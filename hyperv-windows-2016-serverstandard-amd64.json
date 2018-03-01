@@ -7,7 +7,8 @@
         "iso_url": "D:/iso/Windows 2016/en_windows_server_2016_x64_dvd_9327751.iso",
         "iso_checksum_type": "md5",
         "iso_checksum": "91D7B2EBCFF099B3557570AF7A8A5CD6",
-        "hyperv_switchname": "vSwitch_Wireless",
+        "hyperv_switchname": "Home vSwitch Team",
+        "vlan": "1",
         "username": "vagrant",
         "password": "vagrant"
     },
@@ -37,6 +38,7 @@
         "cpu": "{{user `cpu`}}",
         "generation": 2,
         "switch_name": "{{user `hyperv_switchname`}}",
+        "vlan_id": "{{user `vlan`}}",
         "enable_secure_boot": true
     }],
     "provisioners": [{
