@@ -9,6 +9,8 @@
         "iso_checksum": "91D7B2EBCFF099B3557570AF7A8A5CD6",
         "hyperv_switchname": "Home vSwitch Team",
         "vlan": "1",
+        "temp_path": "F:/Hyper-V",
+        "vhd_temp_path": "G:/PackerTemp",
         "username": "vagrant",
         "password": "vagrant"
     },
@@ -39,6 +41,8 @@
         "generation": 2,
         "switch_name": "{{user `hyperv_switchname`}}",
         "vlan_id": "{{user `vlan`}}",
+        "temp_path": "{{user `temp_path`}}",
+        "vhd_temp_path": "{{user `vhd_temp_path`}}",
         "enable_secure_boot": true
     }],
     "provisioners": [{
