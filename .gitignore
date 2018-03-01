@@ -1,0 +1,6 @@
+/output-vmware-windows-iso
+/packer_cache
+/.aptcache
+/*.box
+/*.ISO
+/*.iso
