@@ -50,7 +50,7 @@
                 </LocalAccounts>
             </UserAccounts>
             <DisableAutoDaylightTimeSet>true</DisableAutoDaylightTimeSet>
-            <TimeZone>Coordinated Universal Time</TimeZone>
+            <TimeZone>W. Europe Standard Time</TimeZone>
             <VisualEffects>
                 <SystemDefaultBackgroundColor>2</SystemDefaultBackgroundColor>
             </VisualEffects>

@@ -166,7 +166,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <ComputerName>nl-ams-basebox1</ComputerName>
-            <TimeZone>Coordinated Universal Time</TimeZone>
+            <TimeZone>W. Europe Standard Time</TimeZone>
             <RegisteredOwner />
         </component>
         <component name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -220,7 +220,7 @@
                 </LocalAccounts>
             </UserAccounts>
             <RegisteredOwner />
-            <TimeZone>Coordinated Universal Time</TimeZone>
+            <TimeZone>W. Europe Standard Time</TimeZone>
             <AutoLogon>
                 <Password>
                     <Value>vagrant</Value>
@@ -357,7 +357,7 @@
                     <Order>96</Order>
                     <Description>Configure WSUS Server</Description>
                     <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>                  
+                </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd /c > c:\windows\temp\97-set-power-config.txt 2>$1 (FOR %i IN (A B C D E F G H I J K L N M O P Q R S T U V W X Y Z) DO IF EXIST %i:\set-power-config.ps1 (powershell -executionpolicy bypass -noprofile -File %i:\set-power-config.ps1 ))</CommandLine>
                     <Order>97</Order>
