@@ -165,7 +165,7 @@
             <OEMInformation>
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
-            <ComputerName>nl-ams-basebox1</ComputerName>
+            <ComputerName>win-2016</ComputerName>
             <TimeZone>W. Europe Standard Time</TimeZone>
             <RegisteredOwner />
         </component>
