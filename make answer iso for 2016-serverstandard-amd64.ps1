@@ -10,6 +10,7 @@ if (test-path windows\$osFolder\answer.iso){
 
 $ENV:UnAttendUseUefi = $true
 $ENV:UnAttendUseCdrom = $true
+$ENV:SkipDefrag = $true
 
 &.\windows\update-variables.ps1
 
