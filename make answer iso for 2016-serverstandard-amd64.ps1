@@ -17,7 +17,6 @@ if (test-path windows\$osFolder\answer.iso){
 
 $ENV:UnAttendUseUefi = $true
 $ENV:UnAttendUseCdrom = $true
-$ENV:SkipDefrag = $true
 
 Write-Host "Starting update-variables.ps1"
 &.\windows\update-variables.ps1
