@@ -1,5 +1,5 @@
 if ($ENV:Workspace){
-	$CurrentPath = $ENV:Workspace
+	$CurrentPath = Join-Path -Path $ENV:Workspace -ChildPath windows
 }
 else{
 	$CurrentPath = Split-Path -parent $MyInvocation.MyCommand.Definition
