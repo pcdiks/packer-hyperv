@@ -1,14 +1,17 @@
 ﻿if ($ENV:Workspace){
+	Write-Host "Set-Location to" $ENV:Workspace
 	Set-Location $ENV:Workspace
 }
 
 $osFolder = 'windows-2016-serverstandard-amd64'
 $isoFolder = 'answer-iso'
 if (test-path $isoFolder){
+	Write-Host "Remove old $isoFolder"
 	remove-item $isoFolder -Force -Recurse
 }
 
 if (test-path windows\$osFolder\answer.iso){
+	Write-Host "Remove old $osFolder\answer.iso"
 	remove-item windows\$osFolder\answer.iso -Force
 }
 
@@ -16,8 +19,10 @@ $ENV:UnAttendUseUefi = $true
 $ENV:UnAttendUseCdrom = $true
 $ENV:SkipDefrag = $true
 
+Write-Host "Starting update-variables.ps1"
 &.\windows\update-variables.ps1
 
+Write-Host "Creating $isoFolder"
 mkdir $isoFolder
 
 Copy-Item windows\$osFolder\Autounattend.xml $isoFolder\
@@ -40,8 +45,10 @@ Copy-Item windows\common\Set-ClientWSUSSetting.ps1 $isoFolder\
 Copy-Item windows\common\Set-ClientWSUSSetting.task.ps1 $isoFolder\
 Copy-Item windows\common\Reset-ClientWSUSSetting.ps1 $isoFolder\
 
+Write-Host "Creating new windows\$osFolder\answer.iso"
 & .\mkisofs.exe -r -iso-level 4 -UDF -o windows\$osFolder\answer.iso $isoFolder
 
 if (test-path $isoFolder){
+	Write-Host "Removing $isoFolder"
 	remove-item $isoFolder -Force -Recurse
 }
