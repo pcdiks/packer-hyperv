@@ -195,7 +195,7 @@ if ($ENV:SkipSDelete) {
 		$sysprepunattend = $sysprepunattend | % { $_ -replace '<!-- Setup proxy after sysprep','<!-- Setup proxy after sysprep -->' } | % { $_ -replace 'Finish proxy after sysprep -->','<!-- Finish proxy after sysprep -->' }   
 	}
 	
-	$sysprepunattend | sc -Path $sysprepunattendPath
+	$sysprepunattend | Set-Content -Path $sysprepunattendPath
 }
 
 $variablesPath = "$CurrentPath\common\variables.ps1"
@@ -306,7 +306,7 @@ if (`$ENV:SkipCompileDotNetAssemblies) {
 }
 
 if (`$ENV:SkipDefrag) {
-	`$SkipDefrag = [System.Convert]::ToBoolean(`$ENV:SkipSDelete)
+	`$SkipDefrag = [System.Convert]::ToBoolean(`$ENV:SkipDefrag)
 }
 
 if (`$ENV:AuthorizedKeys) {
