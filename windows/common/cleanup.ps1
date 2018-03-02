@@ -22,7 +22,7 @@ if ($SkipWindowsUpdates){
 
 try{
 	Write-Host "Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase"
-	Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+	Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase /Quiet
 } catch {
 	Write-Host "Unable to reset base. Should be ok if patches have been slipstreamed."
 }
