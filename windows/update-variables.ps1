@@ -1,4 +1,9 @@
-$CurrentPath = Split-Path -parent $MyInvocation.MyCommand.Definition
+if ($ENV:Workspace){
+	$CurrentPath = $ENV:Workspace
+}
+else{
+	$CurrentPath = Split-Path -parent $MyInvocation.MyCommand.Definition
+}
 
 $UnAttendWindowsName = "vagrant"
 if ($ENV:UnAttendWindowsName) {

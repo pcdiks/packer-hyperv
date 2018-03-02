@@ -1,4 +1,8 @@
-﻿$osFolder = 'windows-2016-serverstandard-amd64'
+﻿if ($ENV:Workspace){
+	Set-Location $ENV:Workspace
+}
+
+$osFolder = 'windows-2016-serverstandard-amd64'
 $isoFolder = 'answer-iso'
 if (test-path $isoFolder){
 	remove-item $isoFolder -Force -Recurse
