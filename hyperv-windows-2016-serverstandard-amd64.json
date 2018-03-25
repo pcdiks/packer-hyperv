@@ -59,10 +59,5 @@
             "./windows/common/optimize-drive.ps1",
             "./windows/common/sdelete.ps1"
         ]
-    }],
-    "post-processors": [{
-        "type": "vagrant",
-        "keep_input_artifact": false,
-        "output": "{{.Provider}}_windows-2016_chef.box"
     }]
 }
