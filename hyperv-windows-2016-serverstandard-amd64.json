@@ -42,7 +42,6 @@
         "switch_name": "{{user `hyperv_switchname`}}",
         "vlan_id": "{{user `vlan`}}",
         "temp_path": "{{user `temp_path`}}",
-        "vhd_temp_path": "{{user `vhd_temp_path`}}",
         "enable_secure_boot": true
     }],
     "provisioners": [{
