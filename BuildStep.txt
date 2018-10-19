@@ -1,0 +1,8 @@
+Build Step:
+
+$Env:VAGRANT_HOME="D:\Packer\Temp"
+vagrant box add "$ENV:Workspace\hyperv_windows-2016_chef.box" --name WindowsServer2016
+#Copy
+Copy-Item "D:\Packer\Temp\boxes\WindowsServer2016\0\hyperv\Virtual Hard Disks\windows2016.vhdx" \\vmm101\MSSCVMMLibrary\VHDs\
+#Delete
+vagrant box remove WindowsServer2016
