@@ -120,6 +120,16 @@ if ($ENV:SkipSDelete) {
 	$SkipSDelete = [System.Convert]::ToBoolean($ENV:SkipSDelete)
 }
 
+$Skip7zip = $false
+if ($ENV:Skip7zip) {
+	$Skip7zip = [System.Convert]::ToBoolean($ENV:Skip7zip)
+}
+
+$SkipChef = $true
+if ($ENV:SkipChef) {
+	$SkipChef = [System.Convert]::ToBoolean($ENV:SkipChef)
+}
+
 @("windows-10-amd64", "windows-2012R2-serverstandard-amd64", "windows-2016-serverstandard-amd64") | %{
 	$osDirectory = $_
 	$autounattendPath = "$CurrentPath\$osDirectory\Autounattend.xml" 
@@ -256,6 +266,7 @@ $file = @"
 `$SkipCleanup = [System.Convert]::ToBoolean('$($SkipCleanup)')
 `$SkipCompileDotNetAssemblies = [System.Convert]::ToBoolean('$($SkipCompileDotNetAssemblies)')
 `$SkipDefrag = [System.Convert]::ToBoolean('$($SkipDefrag)')
+`$SkipSDelete = [System.Convert]::ToBoolean('$($SkipSDelete)')
 `$AuthorizedKeys = '$($ENV:AuthorizedKeys)'
 
 if (`$ENV:UnAttendWindowsUsername) {

@@ -10,6 +10,12 @@ for ([byte]$c = [char]'A'; $c -le [char]'Z'; $c++)
 	}
 }
 
+if ($SkipChef){
+	Write-Host "Skipping Chef"
+	exit 0
+}
+
+
 $version = '13.1.31'
 $build = '-1'
 $msi_file_name = "chef-client-$($version)$($build)-x64.msi"
