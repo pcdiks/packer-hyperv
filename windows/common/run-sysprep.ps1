@@ -1,3 +1,5 @@
+Write-Host "Start Sysprep script"
+
 $ProgressPreference="SilentlyContinue"
 
 for ([byte]$c = [char]'A'; $c -le [char]'Z'; $c++)  
@@ -10,35 +12,31 @@ for ([byte]$c = [char]'A'; $c -le [char]'Z'; $c++)
 	}
 }
 
-&c:\windows\system32\sysprep\sysprep.exe /generalize /oobe /mode:vm /quiet /quit
-Write-Host "sysprep exit code was $LASTEXITCODE"
-
+<#
 @('c:\unattend.xml', 'c:\windows\panther\unattend\unattend.xml', 'c:\windows\panther\unattend.xml', 'c:\windows\system32\sysprep\unattend.xml') | %{
 	if (test-path $_){
 		write-host "Removing $($_)"
 		remove-item $_ > $null
 	}	
 }
+#>
 
-if (!(test-path 'c:\windows\panther\unattend')) {
-	write-host "Creating directory $($_)"
-    New-Item -path 'c:\windows\panther\unattend' -type directory > $null
-}
+#Fix the registry to make sysprep actually work
+Set-ItemProperty -Path 'HKLM:\SYSTEM\Setup\Status\SysprepStatus' -Name GeneralizationState -Type DWord -Force -Value 7
 
+
+Write-Host Starting Sysprep Command at (Get-Date).DateTime
 if (Test-Path 'a:\sysprep-unattend.xml'){
-	write-host "Copying a:\sysprep-unattend.xml to c:\windows\panther\unattend\unattend.xml"
-	Copy-Item 'a:\sysprep-unattend.xml' 'c:\windows\panther\unattend\unattend.xml' > $null
+	& c:\windows\system32\sysprep\sysprep.exe /generalize /oobe /mode:vm /quit /unattend:a:\sysprep-unattend.xml
 } elseif (Test-Path 'e:\sysprep-unattend.xml'){
-	write-host "Copying e:\sysprep-unattend.xml to c:\windows\panther\unattend\unattend.xml"
-	Copy-Item 'e:\sysprep-unattend.xml' 'c:\windows\panther\unattend\unattend.xml' > $null
+	& c:\windows\system32\sysprep\sysprep.exe /generalize /oobe /mode:vm /quit /unattend:e:\sysprep-unattend.xml
 } else {
-	write-host "Copying f:\sysprep-unattend.xml to c:\windows\panther\unattend\unattend.xml"
-	Copy-Item 'f:\sysprep-unattend.xml' 'c:\windows\panther\unattend\unattend.xml'> $null
+	& c:\windows\system32\sysprep\sysprep.exe /generalize /oobe /mode:vm /quit /unattend:f:\sysprep-unattend.xml
 }
+Write-Host Sysprep finish at (Get-Date).DateTime
 
 write-host "Running shutdown"
-&shutdown -s
-Write-Host "shutdown exit code was $LASTEXITCODE"
+Stop-Computer -Force
 
 write-host "Return exit 0"
 exit 0 

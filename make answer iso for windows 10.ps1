@@ -17,6 +17,8 @@ mkdir $isoFolder
 
 Copy-Item windows\$osFolder\Autounattend.xml $isoFolder\
 Copy-Item windows\$osFolder\sysprep-unattend.xml $isoFolder\
+if (Test-Path windows\$osFolder\Software.zip) {Copy-Item windows\$osFolder\Software.zip $isoFolder\}
+if (Test-Path windows\$osFolder\Customize-System.ps1) {Copy-Item windows\$osFolder\Customize-System.ps1 $isoFolder\}
 Copy-Item windows\common\variables.ps1 $isoFolder\
 
 Copy-Item windows\common\set-power-config.ps1 $isoFolder\
@@ -34,6 +36,7 @@ Copy-Item windows\common\elevate.exe $isoFolder\
 Copy-Item windows\common\Set-ClientWSUSSetting.ps1 $isoFolder\
 Copy-Item windows\common\Set-ClientWSUSSetting.task.ps1 $isoFolder\
 Copy-Item windows\common\Reset-ClientWSUSSetting.ps1 $isoFolder\
+
 
 & .\mkisofs.exe -r -iso-level 4 -UDF -o windows\$osFolder\answer.iso $isoFolder
 

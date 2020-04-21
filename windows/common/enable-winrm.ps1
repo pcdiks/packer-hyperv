@@ -1,3 +1,4 @@
+<#
 Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name LocalAccountTokenFilterPolicy -Value 1 -Type DWord
 enable-psremoting -SkipNetworkProfileCheck -Force
 Set-WSManQuickConfig -SkipNetworkProfileCheck -Force
@@ -26,5 +27,29 @@ if ((Get-Item WSMan:\localhost\Shell\MaxShellRunTime).Value -lt 1800000) {
 }
 
 Set-Item WSMan:\localhost\Listener\*\Port -Value 5985 -Force
-stop-service winrm
 cmd /c sc config winrm start= disabled
+#>
+
+# Supress network location Prompt
+New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force
+
+# Set network to private
+$ifaceinfo = Get-NetConnectionProfile
+Set-NetConnectionProfile -InterfaceIndex $ifaceinfo.InterfaceIndex -NetworkCategory Private 
+
+# Set up WinRM and configure some things
+winrm quickconfig -q
+winrm s "winrm/config" '@{MaxTimeoutms="1800000"}'
+winrm s "winrm/config/winrs" '@{MaxMemoryPerShellMB="2048"}'
+winrm s "winrm/config/service" '@{AllowUnencrypted="true"}'
+winrm s "winrm/config/service/auth" '@{Basic="true"}'
+
+# Enable the WinRM Firewall rule, which will likely already be enabled due to the 'winrm quickconfig' command above
+Enable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
+
+#WinRM is enabled when Windows Updates are finished
+stop-service winrm
+sc config winrm start= disabled
+
+
+exit 0

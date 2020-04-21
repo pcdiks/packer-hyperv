@@ -1,5 +1,7 @@
 @ECHO OFF
 
+Echo Started with run-syspre.cmd command
+
 SET SCRIPTNAME=%~d0%~p0%~n0.ps1
 PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command "& { $ErrorActionPreference = 'Stop'; & '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }"
 

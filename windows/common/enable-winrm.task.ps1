@@ -20,6 +20,10 @@ if ($UnAttendWindowsPassword) {
 	$password = $UnAttendWindowsPassword
 }
 
+if ($UnAttendWindowsUsername) {
+  $username = $UnAttendWindowsUsername
+}
+
 $CurrentPath = Split-Path -parent $MyInvocation.MyCommand.Definition
 $scriptToExecute = "$CurrentPath\enable-winrm.ps1"
 
@@ -79,7 +83,7 @@ $task_xml = @'
 </Task>
 '@
 
-$arguments = "/c powershell.exe -File $scriptToExecute &gt; $out_file 2&gt;&amp;1"
+$arguments = "/c powershell.exe -File $scriptToExecute > $out_file 2>&1"
 
 $task_xml = $task_xml.Replace("{arguments}", $arguments)
 $task_xml = $task_xml.Replace("{username}", $username)

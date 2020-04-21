@@ -120,7 +120,7 @@ if ($ENV:SkipSDelete) {
 	$SkipSDelete = [System.Convert]::ToBoolean($ENV:SkipSDelete)
 }
 
-$Skip7zip = $false
+$Skip7zip = $true
 if ($ENV:Skip7zip) {
 	$Skip7zip = [System.Convert]::ToBoolean($ENV:Skip7zip)
 }
@@ -267,6 +267,8 @@ $file = @"
 `$SkipCompileDotNetAssemblies = [System.Convert]::ToBoolean('$($SkipCompileDotNetAssemblies)')
 `$SkipDefrag = [System.Convert]::ToBoolean('$($SkipDefrag)')
 `$SkipSDelete = [System.Convert]::ToBoolean('$($SkipSDelete)')
+`$SkipChef = [System.Convert]::ToBoolean('$($SkipChef)')
+`$Skip7zip = [System.Convert]::ToBoolean('$($Skip7zip)')
 `$AuthorizedKeys = '$($ENV:AuthorizedKeys)'
 
 if (`$ENV:UnAttendWindowsUsername) {
